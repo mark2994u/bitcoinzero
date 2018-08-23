@@ -30,8 +30,8 @@
 #include "crypto/scrypt.h"
 #include "crypto/Lyra2Z/Lyra2Z.h"
 #include "crypto/Lyra2Z/Lyra2.h"
-#include "xnode-payments.h"
-#include "xnode-sync.h"
+#include "bznode-payments.h"
+#include "bznode-sync.h"
 #include "zerocoin.h"
 #include "zerocoin_params.h"
 #include <algorithm>
@@ -435,12 +435,12 @@ CBlockTemplate* BlockAssembler::CreateNewBlock(const CScript& scriptPubKeyIn)
             }
         }
         CAmount blockReward = nFees + GetBlockSubsidy(nHeight, chainparams.GetConsensus());
-        // Update coinbase transaction with additional info about xnode and governance payments,
+        // Update coinbase transaction with additional info about bznode and governance payments,
         // get some info back to pass to getblocktemplate
-        if (nHeight >= HF_XNODE_PAYMENT_START) {
-            CAmount xnodePayment = GetXnodePayment(nHeight, blockReward);
-            coinbaseTx.vout[0].nValue -= xnodePayment;
-            FillBlockPayments(coinbaseTx, nHeight, xnodePayment, pblock->txoutXnode, pblock->voutSuperblock);
+        if (nHeight >= HF_BZNODE_PAYMENT_START) {
+            CAmount bznodePayment = GetBznodePayment(nHeight, blockReward);
+            coinbaseTx.vout[0].nValue -= bznodePayment;
+            FillBlockPayments(coinbaseTx, nHeight, bznodePayment, pblock->txoutBznode, pblock->voutSuperblock);
         }
 
         nLastBlockTx = nBlockTx;
