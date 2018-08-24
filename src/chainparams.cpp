@@ -82,10 +82,10 @@ public:
         strSporkPubKey = "04ffde6668d0dff8ba92c67b1f751568e11608f23c8c0437eccd5a6ec713ae3638238478b816783593d552bc8b6a57147dd67596eb372b0cadc743d3835c43e9e3";
         strBznodePaymentsPubKey = "04ffde6668d0dff8ba92c67b1f751568e11608f23c8c0437eccd5a6ec713ae3638238478b816783593d552bc8b6a57147dd67596eb372b0cadc743d3835c43e9e3";
 
-		pchMessageStart[0] = { 'h' };
-		pchMessageStart[1] = { 'e' };
-		pchMessageStart[2] = { 'x' };
-		pchMessageStart[3] = { 'x' };
+        pchMessageStart[0] = { 'b' };
+        pchMessageStart[1] = { 't' };
+        pchMessageStart[2] = { 'c' };
+        pchMessageStart[3] = { 'z' };
         nDefaultPort = 29101;
         nPruneAfterHeight = 100000;
         std::vector<unsigned char> extraNonce(4);
@@ -99,7 +99,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x31f49b23f8a1185f85a6a6972446e72a86d50ca0e3b3ffe217d0c2fea30473db"));
         vSeeds.push_back(CDNSSeedData("76.74.170.128", "76.74.170.128"));
         vSeeds.push_back(CDNSSeedData("5.79.119.106", "5.79.119.106"));
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector < unsigned char > (1, 0);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector < unsigned char > (1, 75);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector < unsigned char > (1, 10);
         base58Prefixes[SECRET_KEY] = std::vector < unsigned char > (1, 210);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container < std::vector < unsigned char > > ();
@@ -141,7 +141,7 @@ public:
         nModulusV1StopBlock = ZC_MODULUS_V1_STOP_BLOCK;
 
         nForkStartHeight = 321700;
-        nForkHeightRange = 1;
+        nForkHeightRange = 10;
 
 	}
 };

@@ -1860,7 +1860,7 @@ bool AppInit2(boost::thread_group &threadGroup, CScheduler &scheduler) {
 
     LogPrintf("Using Bznode config file %s\n", GetBznodeConfigFile().string());
 
-    if (GetBoolArg("-xnconflock", true) && pwalletMain && (bznodeConfig.getCount() > 0)) {
+    if (GetBoolArg("-bznconflock", true) && pwalletMain && (bznodeConfig.getCount() > 0)) {
         LOCK(pwalletMain->cs_wallet);
         LogPrintf("Locking Bznodes:\n");
         uint256 mnTxHash;
