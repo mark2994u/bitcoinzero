@@ -1133,7 +1133,7 @@ bool AppInit2(boost::thread_group &threadGroup, CScheduler &scheduler) {
     if (nMaxConnections < nUserMaxConnections)
         InitWarning(strprintf(_("Reducing -maxconnections from %d to %d, because of system limitations."),
                               nUserMaxConnections, nMaxConnections));
-
+							  
     forkStartHeight = GetArg("-fork-startheight", chainparams.ForkStartHeight());
     forkHeightRange = GetArg("-fork-heightrange", chainparams.ForkHeightRange());
 	

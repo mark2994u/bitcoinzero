@@ -107,6 +107,7 @@ FeeFilterRounder filterRounder(::minRelayTxFee);
 int64_t forkStartHeight;
 int64_t forkHeightRange;
 
+
 // Dash bznode
 map <uint256, int64_t> mapRejectedBlocks GUARDED_BY(cs_main);
 
@@ -2841,11 +2842,10 @@ bool ConnectBlock(const CBlock &block, CValidationState &state, CBlockIndex *pin
     //btzc: Add time to check
     CAmount blockReward = nFees + GetBlockSubsidy(pindex->nHeight, chainparams.GetConsensus());
     if ((block.vtx[0].GetValueOut() > blockReward) && pindex->nHeight < (forkStartHeight +1) && pindex->nHeight > (forkStartHeight + forkHeightRange))
-        {
         return state.DoS(100, error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",
-        block.vtx[0].GetValueOut(), blockReward),
-        REJECT_INVALID, "bad-cb-amount");
-        }
+                                    block.vtx[0].GetValueOut(), blockReward),
+                         REJECT_INVALID, "bad-cb-amount");
+
     // BZNODE : MODIFIED TO CHECK BZNODE PAYMENTS AND SUPERBLOCKS
     // It's possible that we simply don't have enough data and this could fail
     // (i.e. block itself could be a correct one and we need to store it),
@@ -5898,6 +5898,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
             else
                 pfrom->fRelayTxes = true;
         }
+
 	
         // Disconnect if we connected to ourself
         if (nNonce == nLocalHostNonce && nNonce > 1) {

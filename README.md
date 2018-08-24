@@ -1,7 +1,11 @@
-Bitcoinzero [BZX] Core 2018
+Bitcoinzero [BZX] Core update 2018
 ===============================
 
 [![Build Status](https://travis-ci.org/bitcoinzerotakeover/bitcoinzero.svg?branch=master)](https://travis-ci.org/bitcoinzerotakeover/bitcoinzero)
+
+# **Bznodes alive!**
+# ** DO NOT USE ZERO FUNCTION UNTIL NEW PROTOCOL FULLY ADDED**
+# ** CURRENTLY DISABLED UNTIL NEXT RELEASE**
 
 Anonymous Zerocoin Protocol:
 https://en.wikipedia.org/wiki/Zerocoin
@@ -12,21 +16,21 @@ https://en.wikipedia.org/wiki/RSA_Factoring_Challenge
 Bitcoinzero
 ----------------
 * Coin Suffix: BZX
-* Algorithm: -
-* Algo params: -
+* Algorithm:lyra2z330
+* Algo params: LYRA2(BEGIN(thash), 32, BEGIN(nVersion), 80, BEGIN(nVersion), 80, 2, 330, 256)
 * Target Spacing: 150 Seconds
 * Retarget: every block
 * Confirmation: 6 Blocks
 * Maturity: 120 Blocks
-* Blocks: -
-* Total Coins: 42,000,000 BZX
+* Blocks: ~576 per day
+* Total Coins: 9,999,999 BZX
 * Min TX Fee: 0.001 BZX
 * Block Size: 4MB
 
 
 Net Parameters
 ----------------
-* P2P Port=29101
+* P2P Port=29100
 * RPC Port=29200
 * Client core=13.4
 * Client name=bitcoinzero.qt
@@ -68,7 +72,7 @@ Debian/Ubuntu Linux Daemon Build Instructions
 	for qt:
 	sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler libqrencode-dev
 
-	git clone https://github.com/BitcoinZeroOfficial/bitcoinzero
+	git clone https://github.com/bitcoinzerotakeover/bitcoinzero
 
 	cd bitcoinzero
 	for vps:
@@ -99,7 +103,7 @@ Debian/Ubuntu Linux Daemon Build Instructions
 	data folder:
 	bitcoinzero
 
-	port 29101
+	port 29100
 	rpc port 29200
 
 Example bitcoinzero.conf Configuration

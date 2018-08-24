@@ -587,5 +587,4 @@ static const unsigned int REJECT_CONFLICT = 0x102;
 extern int64_t forkStartHeight;
 extern int64_t forkHeightRange;
 
-
 #endif // BITCOIN_MAIN_H
