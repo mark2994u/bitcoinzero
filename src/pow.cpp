@@ -39,7 +39,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex *pindexLast, const CBlockHead
     bool fTestNet = Params().NetworkIDString() == CBaseChainParams::TESTNET;
 
     // allow instamine blocks for fork
-    if ((pindexLast->nHeight > forkStartHeight - 1) && (pindexLast->nHeight < forkStartHeight + forkHeightRange - 1 + 100))// TEST!!
+    if ((pindexLast->nHeight > forkStartHeight - 1) && (pindexLast->nHeight < forkStartHeight + forkHeightRange))
     {
 		return bnProofOfWorkLimit.GetCompact();
 	}
