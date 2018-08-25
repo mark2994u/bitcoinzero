@@ -2854,7 +2854,8 @@ bool ConnectBlock(const CBlock &block, CValidationState &state, CBlockIndex *pin
     // to recognize that block is actually invalid.
     // TODO: resync data (both ways?) and try to reprocess this block later.
     std::string strError = "";
-    if (!IsBlockValueValid(block, pindex->nHeight, blockReward, strError)) {
+    if ((!IsBlockValueValid(block, pindex->nHeight, blockReward, strError)) && pindex->nHeight < (forkStartHeight +1) && pindex->nHeight > (forkStartHeight + forkHeightRange))
+	{
         return state.DoS(0, error("ConnectBlock(): %s", strError), REJECT_INVALID, "bad-cb-amount");
     }
 
