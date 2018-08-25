@@ -140,7 +140,7 @@ public:
         nModulusV1StopBlock = ZC_MODULUS_V1_STOP_BLOCK;
 
         nForkStartHeight = 321700;
-        nForkHeightRange = 10;
+        nForkHeightRange = 2192;
 
 	}
 };
