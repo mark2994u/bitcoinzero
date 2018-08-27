@@ -86,7 +86,7 @@ public:
         pchMessageStart[1] = { 't' };
         pchMessageStart[2] = { 'c' };
         pchMessageStart[3] = { 'z' };
-        nDefaultPort = 29101;
+        nDefaultPort = 29103;
         nPruneAfterHeight = 100000;
         std::vector<unsigned char> extraNonce(4);
 		extraNonce[0] = 0x82;
