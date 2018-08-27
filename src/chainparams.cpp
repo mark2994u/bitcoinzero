@@ -86,7 +86,7 @@ public:
         pchMessageStart[1] = { 't' };
         pchMessageStart[2] = { 'c' };
         pchMessageStart[3] = { 'z' };
-        nDefaultPort = 29103;
+        nDefaultPort = 29101;
         nPruneAfterHeight = 100000;
         std::vector<unsigned char> extraNonce(4);
 		extraNonce[0] = 0x82;
@@ -121,7 +121,10 @@ public:
         (220974, uint256S("0xd85b2231760133f521aec73e240c7867b62f4981aecbf4d2f797813925ecdccb"))
         (222665, uint256S("0x348fda46a431cc2b66f94f9086df05491d8c645576de3d5ab783434fd9c47043"))
         (258199, uint256S("0x012a7e8ad93aca202d3833f843e79b7eabf124e2697b7b411d51c352589ee2e6"))
-        (267697, uint256S("0x3f0726ac75b77902e94cd172fc997ed7979d8238e28133f5300d09c87ba3d479")),
+        (267697, uint256S("0x3f0726ac75b77902e94cd172fc997ed7979d8238e28133f5300d09c87ba3d479"))
+        (323445, uint256S("0xb186d88287d74bcf1c63076d77a1a36a83cbca34266795d985ec35abc39af233")),//first test fork block
+        //(267697, uint256S("0x3f0726ac75b77902e94cd172fc997ed7979d8238e28133f5300d09c87ba3d479")),//last test fork block
+        //(267697, uint256S("0x3f0726ac75b77902e94cd172fc997ed7979d8238e28133f5300d09c87ba3d479")),// fisrt normal block
         1526792483, // * UNIX timestamp of last checkpoint block
         204045,    // * total number of transactions between genesis and last checkpoint
                   //   (the tx=... number in the SetBestChain debug.log lines)
