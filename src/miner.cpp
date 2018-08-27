@@ -1075,7 +1075,16 @@ void static bitcoinzeroMiner(const CChainParams &chainparams) {
 
                 while (true)
                 {
+
+                    if (pindexPrev->nHeight >= HF_ALGO)
+                    {
+                    lyra2z_hash(BEGIN(pblock->nVersion), BEGIN(thash));
+                    }
+                    else
+                    {
                     LYRA2(BEGIN(thash), 32, BEGIN(pblock->nVersion), 80, BEGIN(pblock->nVersion), 80, 2, 330, 256);
+                    }
+
                     if (UintToArith256(thash) <= hashTarget) {
                         // Found a solution
                         LogPrintf("Found a solution. Hash: %s", UintToArith256(thash).ToString());
