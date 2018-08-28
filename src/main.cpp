@@ -4358,6 +4358,7 @@ AcceptBlock(const CBlock &block, CValidationState &state, const CChainParams &ch
     if ((!CheckBlock(block, state, chainparams.GetConsensus(), GetAdjustedTime(), true, pindex->nHeight, false)) ||
         !ContextualCheckBlock(block, state, pindex->pprev)) {
         if (state.IsInvalid() && !state.CorruptionPossible()) {
+            LogPrintf("state.IsInvalid6\n");
             pindex->nStatus |= BLOCK_FAILED_VALID;
             setDirtyBlockIndex.insert(pindex);
         }
