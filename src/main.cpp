@@ -5575,6 +5575,7 @@ void static ProcessGetData(CNode *pfrom, const Consensus::Params &consensusParam
 
                     //disconnect node
                     pfrom->fDisconnect = true;
+                    LogPrintf("state.IsInvalid7\n");
                     send = false;
                 }
                 // Pruned nodes may have deleted the block, so check whether
@@ -5835,6 +5836,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
             return false;
         } else {
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid8\n");
             return false;
         }
     }
@@ -5845,6 +5847,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
         if (pfrom->fFeeler) {
             assert(pfrom->fInbound == false);
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid9\n");
         }
 
         // Each connection can only send one version message
@@ -5869,6 +5872,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
             // LogPrintf("peer=%d does not offer the expected services (%08x offered, %08x expected); disconnecting\n", pfrom->id, pfrom->nServices, pfrom->nServicesExpected);
             pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_NONSTANDARD, strprintf("Expected to offer services %08x", pfrom->nServicesExpected));
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid10\n");
             return false;
         }
 
@@ -5883,6 +5887,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
             // LogPrintf("peer=%d using obsolete version %i; disconnecting\n", pfrom->id, pfrom->nVersion);
             pfrom->PushMessage(NetMsgType::REJECT, strCommand, REJECT_OBSOLETE, strprintf("Version must be %d or greater", minPeerVersion));
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid11\n");
             return false;
         }
 
@@ -5910,6 +5915,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
         if (nNonce == nLocalHostNonce && nNonce > 1) {
 //            LogPrintf("connected to self at %s, disconnecting\n", pfrom->addr.ToString());
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid12\n");
             return true;
         }
 
@@ -6077,6 +6083,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
             pfrom->fGetAddr = false;
         if (pfrom->fOneShot)
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid13\n");
     } else if (strCommand == NetMsgType::SENDHEADERS) {
         LOCK(cs_main);
         State(pfrom->GetId())->fPreferHeaders = true;
@@ -6996,6 +7003,7 @@ bool static ProcessMessage(CNode *pfrom, string strCommand, CDataStream &vRecv, 
         if (!(nLocalServices & NODE_BLOOM) && !pfrom->fWhitelisted) {
             LogPrint("net", "mempool request with bloom filters disabled, disconnect peer=%d\n", pfrom->GetId());
             pfrom->fDisconnect = true;
+            LogPrintf("state.IsInvalid14\n");
             return true;
         }
 
@@ -7390,6 +7398,7 @@ bool SendMessages(CNode *pto) {
                 LogPrintf("Warning: not punishing whitelisted peer %s!\n", pto->addr.ToString());
             else {
                 pto->fDisconnect = true;
+                LogPrintf("state.IsInvalid15\n");
                 if (pto->addr.IsLocal())
                     LogPrintf("Warning: not banning local peer %s!\n", pto->addr.ToString());
                 /*else {
@@ -7727,6 +7736,7 @@ bool SendMessages(CNode *pto) {
             // should only happen during initial block download.
             LogPrintf("Peer=%d is stalling block download, disconnecting\n", pto->id);
             pto->fDisconnect = true;
+            LogPrintf("state.IsInvalid16\n");
         }
         // In case there is a block that has been in flight from this peer for 2 + 0.5 * N times the block interval
         // (with N the number of peers from which we're downloading validated blocks), disconnect due to timeout.
@@ -7743,6 +7753,7 @@ bool SendMessages(CNode *pto) {
                 LogPrintf("Timeout downloading block %s from peer=%d, disconnecting\n", queuedBlock.hash.ToString(),
                           pto->id);
                 pto->fDisconnect = true;
+                LogPrintf("state.IsInvalid17\n");
             }
         }
 

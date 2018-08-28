@@ -462,6 +462,7 @@ static void DumpBanlist() {
 
 void CNode::CloseSocketDisconnect() {
     fDisconnect = true;
+    LogPrintf("state.IsInvalid18\n");
     if (hSocket != INVALID_SOCKET) {
         LogPrint("net", "disconnecting peer=%d\n", id);
         CloseSocket(hSocket);
@@ -563,6 +564,7 @@ void CNode::Ban(const CSubNet &subNet, const BanReason &banReason, int64_t banti
         {
             if (subNet.Match((CNetAddr) pnode->addr))
                 pnode->fDisconnect = true;
+                LogPrintf("state.IsInvalid19\n");
         }
     }
     if (banReason == BanReasonManuallyAdded)
@@ -967,6 +969,7 @@ static bool AttemptToEvictConnection() {
     for (std::vector<CNode *>::const_iterator it(vNodes.begin()); it != vNodes.end(); ++it) {
         if ((*it)->GetId() == evicted) {
             (*it)->fDisconnect = true;
+            LogPrintf("state.IsInvalid20\n");
             return true;
         }
     }
