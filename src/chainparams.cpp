@@ -84,7 +84,7 @@ public:
 
         pchMessageStart[0] = { 'b' };
         pchMessageStart[1] = { 't' };
-        pchMessageStart[2] = { 'c' };
+        pchMessageStart[2] = { 'z' };
         pchMessageStart[3] = { 'z' };
         nDefaultPort = 29101;
         nPruneAfterHeight = 100000;
