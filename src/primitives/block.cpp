@@ -30,8 +30,13 @@ uint256 CBlockHeader::GetHash() const
 uint256 CBlockHeader::GetPoWHash(int nHeight) const
 {
     uint256 powHash;
+    if (nHeight >= HF_ALGO)
     {
-     LYRA2(BEGIN(powHash), 32, BEGIN(nVersion), 80, BEGIN(nVersion), 80, 2, 330, 256);
+    lyra2z_hash(BEGIN(nVersion), BEGIN(powHash));
+    }
+    else
+    {
+    LYRA2(BEGIN(powHash), 32, BEGIN(nVersion), 80, BEGIN(nVersion), 80, 2, 330, 256);
     }
 
     return powHash;
