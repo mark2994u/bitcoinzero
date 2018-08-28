@@ -15,6 +15,7 @@ static const int HF_BZNODE_HEIGHT = 222665; //estimated fork, GMT: Saturday, 3rd
 static const int HF_BZNODE_PAYMENT_START = HF_BZNODE_HEIGHT + 576; // about 24h after HF
 static const int HF_F_PAYMENT_STOP = 643145; // 2 years after fork for coin development
 static const int HF_F_PAYMENT_START = HF_BZNODE_HEIGHT;
+static const int HF_ALGO = 325000;
 
 /** The maximum allowed size for a serialized block, in bytes (only for buffer size limits) */
 static const unsigned int MAX_BLOCK_SERIALIZED_SIZE = 4000000;
