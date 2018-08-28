@@ -168,7 +168,6 @@ ReadStatus PartiallyDownloadedBlock::FillBlock(CBlock& block, const std::vector<
         // check its own merkle root and cache that check.
         if (state.CorruptionPossible())
             LogPrintf("state.IsInvalid5\n");
-            setDirtyBlockIndex
             return READ_STATUS_FAILED; // Possible Short ID collision
         return READ_STATUS_CHECKBLOCK_FAILED;
     }
