@@ -2064,19 +2064,23 @@ void static InvalidChainFound(CBlockIndex *pindexNew) {
 void static InvalidBlockFound(CBlockIndex *pindex, const CValidationState &state) {
     int nDoS = 0;
     if (state.IsInvalid(nDoS)) {
+        LogPrintf("state.IsInvalid0\n");
         std::map < uint256, std::pair < NodeId, bool >> ::iterator
         it = mapBlockSource.find(pindex->GetBlockHash());
         if (it != mapBlockSource.end() && State(it->second.first)) {
+            LogPrintf("state.IsInvalid1\n");
             assert(state.GetRejectCode() < REJECT_INTERNAL); // Blocks are never rejected with internal reject codes
             CBlockReject reject = {(unsigned char) state.GetRejectCode(),
                                    state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH),
                                    pindex->GetBlockHash()};
             State(it->second.first)->rejects.push_back(reject);
             if (nDoS > 0 && it->second.second)
+                LogPrintf("state.IsInvalid2\n");
                 Misbehaving(it->second.first, nDoS);
         }
     }
     if (!state.CorruptionPossible()) {
+        LogPrintf("state.IsInvalid4\n");
         pindex->nStatus |= BLOCK_FAILED_VALID;
         setDirtyBlockIndex.insert(pindex);
         setBlockIndexCandidates.erase(pindex);
