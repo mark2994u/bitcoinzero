@@ -398,7 +398,7 @@ namespace {
         if (state->fSyncStarted)
             nSyncStarted--;
 
-        if (state->nMisbehavior == 0 && state->fCurrentlyConnected) {
+        if (state->fCurrentlyConnected) {
             AddressCurrentlyConnected(state->address);
         }
 
@@ -2040,7 +2040,7 @@ void Misbehaving(NodeId pnode, int howmuch) {
     if (state->nMisbehavior >= banscore && state->nMisbehavior - howmuch < banscore) {
         LogPrintf("%s: %s (%d -> %d) BAN THRESHOLD EXCEEDED\n", __func__, state->name, state->nMisbehavior - howmuch,
                   state->nMisbehavior);
-        state->fShouldBan = true;
+        state->fShouldBan = false;
     } else
         LogPrintf("%s: %s (%d -> %d)\n", __func__, state->name, state->nMisbehavior - howmuch, state->nMisbehavior);
 }
@@ -7387,9 +7387,9 @@ bool SendMessages(CNode *pto) {
                 pto->fDisconnect = true;
                 if (pto->addr.IsLocal())
                     LogPrintf("Warning: not banning local peer %s!\n", pto->addr.ToString());
-                else {
+                /*else {
                     CNode::Ban(pto->addr, BanReasonNodeMisbehaving);
-                }
+                }*/
             }
             state.fShouldBan = false;
         }
